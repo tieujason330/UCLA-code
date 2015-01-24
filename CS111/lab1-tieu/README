@@ -1,0 +1,13 @@
+Jason Tieu 304047667
+
+Lab 1B
+For my implementation, I made several structures that represented dependency, file and thread id nodes. Demanding on the command type (simple, subshell, or complex), I would extract the dependencies from the command. I also executed the command depending on whether it was OR, AND, PIPE, SIMPLE, SEQUENCE, or SUBSHELL. I continued to use the linked list data structure to keep track of my file nodes.
+
+Lab 1A
+For my implementation, I decided to use a linked list of command nodes.
+I made functions for making simple and subshell commands, going through
+each byte and seeing what the char was. I used several cases and if statements
+to determine what to do for each of the special tokens (! % + , - . / : @ ^ _).
+My subshell command function had to see if the commands were surrounded by 
+( and ). I had special cases for pipelines and and-ors. Also I made a function
+to get rid of whitespaces whenever necessary.
