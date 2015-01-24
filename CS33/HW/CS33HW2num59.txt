@@ -1,0 +1,30 @@
+1 08048420 <switch_prob>:
+2 8048420: 55 push %ebp						
+3 8048421: 89 e5 mov %esp,%ebp					
+4 8048423: 8b 45 08 mov 0x8(%ebp),%eax					%eax = x
+5 8048426: 8b 55 0c mov 0xc(%ebp),%edx					%edx = n
+6 8048429: 83 ea 32 sub $0x32,%edx					%edx = n - 50 (atleast 50)
+7 804842c: 83 fa 05 cmp $0x5,%edx					compare %edx:5 (b/t 50:55)
+8 804842f: 77 17 ja 8048448 <switch_prob+0x28>				if not within 0-5 (<50 or >55)
+9 8048431: ff 24 95 d0 85 04 08 jmp *0x80485d0(,%edx,4)			if %edx = 0 (b/c n = 50 so n - 50 = 0) 
+										go to 0x08048438
+									if %edx = 1 (b/c n = 51 so n - 50 = 1) 
+										go to 0x08048448
+									if %edx = 2 (b/c n = 52 so n - 50 = 2) 
+										go to 0x08048438
+									if %edx = 3 (b/c n = 53 so n - 50 = 3) 
+										go to 0x0804843d
+									if %edx = 4 (b/c n = 54 so n - 50 = 4) 
+										go to 0x08048442
+									if %edx = 5 (b/c n = 55 so n - 50 = 5) 
+										go to 0x08048445
+			
+10 8048438: c1 e0 02 shl $0x2,%eax					%eax << 2
+11 804843b: eb 0e jmp 804844b <switch_prob+0x2b>			break;
+12 804843d: c1 f8 02 sar $0x2,%eax					%eax >> 2
+13 8048440: eb 09 jmp 804844b <switch_prob+0x2b>			break;
+14 8048442: 8d 04 40 lea (%eax,%eax,2),%eax				%eax = %eax + 2(%eax)
+15 8048445: 0f af c0 imul %eax,%eax					%eax = %eax * %eax
+16 8048448: 83 c0 0a add $0xa,%eax					%eax = %eax + 10
+17 804844b: 5d pop %ebp
+18 804844c: c3 ret

@@ -1,0 +1,45 @@
+Name:Jason Tieu
+UCLA ID:304047667
+
+
+-------------------------------------------------------------------------------
+
+Response to Exercise 1:
+
+The name of the scheduling algorithm is: Round-Robin
+
+
+(Exercise 2 is a coding exercise)
+
+
+Response to Exercise 3:
+
+Average turnaround time for scheduling_algorithm 0: 1278.5 ms
+(1277 + 1278 + 1279 + 1280) = 5114  / 4 = 1278.5 
+Average turnaround time for scheduling_algorithm 1: 800 ms
+(320 + 640 + 960 + 1280) = 3200  / 4 = 800 ms
+
+Average wait time for scheduling_algorithm 0: 1.5 ms
+(0 + 1 + 2 + 3) = 6 / 4 = 1.5 ms 
+Average wait time for scheduling_algorithm 1: 480 ms
+(0 + 320 + 640 + 960) = 1920  / 4 = 480 ms
+
+
+Exercise 4:
+
+Did you complete Exercise 4A or Exercise 4B?
+Completed both
+
+Exercise 5:
+The first known timer interrupt occurs during process 4. The round-robin
+scheduling was able to execute four times, but process 4 was unable to print
+during the fifth cycle: 1234 1234 1234 1234 2341
+
+(Exercise 6 is a coding exercise)
+
+
+Anything else you'd like us to know:
+
+Exercise 8: Locks were used. In schedos-1.c, activate by defining
+the ALTSYNC preprocessor symbol.
+

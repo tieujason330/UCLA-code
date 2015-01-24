@@ -1,0 +1,72 @@
+# Fill in your name, student ID, and email address in this file.
+# If you are working in a team, fill out the information for both team 
+# members.
+
+# SUBMIT THE LAB ONLY ONCE (from only one partner). This file will be
+# automatically parsed in order to give both team members credit for the
+# lab.
+
+# You need to fill in the EXERCISE sections describing your solutions
+# for Tasks 1, 2, and 3, as well as write the corresponding code.
+# If you did one or more extra credit problems, indicate which one in the
+# appropriate section below (remove the # sign first). If you have any other
+# information you'd like us to know, please add it at the end of the file.
+
+# Partner 1
+Name: Jason Tieu
+Student ID: 304047667
+Email: tieujason330@gmail.com
+
+# Partner 2 (if you're working in a team)
+# Name: 
+# Student ID: 
+# Email: 
+
+# EXERCISE 1: What method you used to make your peer download and upload
+#    files in parallel?  (~1-3 sentences)
+fork() was used to upload and download single requested files in parallel.
+upload_files was created to use select() and fork() to upload.
+
+# EXERCISE 2A: What conditions did you find and fix that would have
+#    triggered a buffer overrun bug?  (~1-3 sentences each)
+In task_upload, osp2p_snscanf is able to copy string longer than FILENAMESIZ. This was fixed by checking length of the buffer that was read to taskbuf before calling snscanf.
+
+In start_download, there is an unprotected call to strcpy on the download ofa requested filename. A strlen check is used as a precaution against cmd line arg.
+
+read_tracker_response only reads first 4096 bytes of data from tracker, which is too little for the popular tracker. This is fixed by dynamically allocating the buffer.
+
+parse_peer uses snscanf w/o checking for length of peer string so a check was added for this.
+
+# EXERCISE 2B: What other robustness problems did you fix?  (~1-3 sentences
+#    each)
+
+Added a check to task_upload to make sure it only upload current directory files.
+
+Defined a cap on a downloadable file to a set amount (MAXFILESIZE). A download that exceeds this size is killed and move on to prevent infinite disk fill-up attacks in task_download.
+
+In the download section, a retry is now possible if downloading a file was unsuccessful.
+
+Added TIMEOUT, determines max number of ms b/t download chunks in task_download before moving to different peers.
+
+# EXERCISE 3: Describe the attacks you implemented for "evil mode".  Why
+#    are they attacks?  (~3-10 sentences each)
+
+evil_mode uses WHO to find list of active peers. Then trys to dl files not inside test directory. This is considered unauthorized access.
+
+evil_mode tries to filename overflow peers from the list found by WHO. This is an overload_request. This is considered an attack since we are attempting to bombard a peer with junk data.
+
+When a file exists and is requested, task_upload sends an infinite data bomb or the wrong file. This attack tries to disrupt's the target's process. It gives them junk or a file they were not looking for.
+If a file doesn't exist and is requested, evil_mode sends a different file (evilpussy.jpg). In a p2p setting, this is like sending a virus instead of a target file.
+
+In register_files, evil_mode regs files whether or not it passes md5 checksum to circulate corrupt files in tracker for users that don't have md5 checksum implemented.
+
+ddos_download submits a thousand download requests to the same peer, which causes issues with any peers that use fork().
+
+spam_md5 registers bad md5sum vals for a lot of potential file names to prevent a peer from successfully registering more files to the server, or that a peer looking to dl the file won't be able to confirm its contents using checksum.
+
+# Extra credit problems
+#Extra credit problem: MD5
+
+Added md5_digest that calcs and returns MD5 checksum. MD5 checksum stored in task struct, and parsed in start_download. task_download calcs MD5 checksum of received file, and checks against's tracker's checksum. If a mismatch occurs, then it downloads against another peer.
+
+# Add any other information you'd like us to know below this line.

@@ -1,0 +1,70 @@
+Jason Tieu
+304047667
+
+Homework 4
+
+2.88
+A. (float) x == (float) dx
+   Yes because even though converting to float causes rounding,
+   x and dx will be rounded in the same way.
+
+B. dx - dy == (double) (x-y)
+   No, such as x = 0 and y = TMin
+   When y is converted to double, it is NaN due to exp = 111...11 frac != 000..000
+
+C. (dx + dy) + dz == dx + (dy + dz)
+   Yes because each value ranges between TMin and TMax, value can be represented correctly.
+
+D. (dx * dy) * dz == dx * (dy * dz)
+   No if dx = TMax, dy = TMax - 1, dz = TMax - 2
+
+E. dx / dx == dz / dz
+   No, let x = 0, z = 1
+------------------------------------------
+2.89
+
+float fpwr2(int x)
+{
+	/* Result exponent and fraction */
+	unsigned exp, frac;
+	unsigned u;
+
+	if (x < -149) {
+		/* Too small. Return 0.0 */
+		exp = 0;
+		frac = 0;
+	} else if (x < -126) {
+		/* Denormalized result */
+		exp = 1;
+		frac = 1 << (x + 149);
+	} else if (x < 128) {
+		/* Normalized result. */
+		exp = x + 127;
+		frac = 0;
+	} else {
+		/* Too big. Return +infinity */
+		exp = 255;
+		frac = 0;
+	}
+	
+	/* Pack exp and frac into 32 bits */
+	u = exp << 23 | frac;
+	/* Return as float */
+	return u2f(u);
+}
+		
+}
+------------------------------------------
+Question from sample-question.pdf
+
+If the application were to output the value of magic8ball[3][2] – what would it be? i.e. what would be
+returned from the statement printf(“%s”, magic8ball[3][2]);
+
+Prints out: Never
+
+----
+magic8ball[3][2]
+3 * 64 + 2 * 8 = 208 (in hex is 0xd0)
+0xffffd428 + 0xd0 = 0xffffd518 (look at 8 bytes ~ 16 hex digits)
+outer index stores 64 bytes
+middle index stores 8 bytes
