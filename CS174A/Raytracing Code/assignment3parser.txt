@@ -1,0 +1,79 @@
+0 SPHERE
+1 s1		name
+2 4		pos x
+3 4		pos y
+4 -10		pos z
+5 2		scl x
+6 2		scl y
+7 1		scl z
+8 0.5		r
+9 0		g
+10 0		b
+11 0		Ka
+12 0		Kd
+13 1		Ks
+14 0		Kr
+15 100		n
+SPHERE
+s2
+0
+0
+-10
+2
+2
+1
+0
+0.5
+0
+0
+0
+1
+0
+10
+SPHERE
+s3
+-4
+2
+-10
+2
+2
+1
+0
+0
+0.5
+0
+0
+1
+0
+1000
+Saving image output.ppm: 600 x 600
+Press any key to continue . . .
+
+
+
+0 LIGHT
+1 l1		name
+2 0		posx
+3 -5		posy
+4 0		posz
+5 0.9		ir
+6 0		ig
+7 0		ib
+LIGHT
+l2
+10
+5
+0
+0
+0.9
+0
+LIGHT
+l3
+-10
+5
+0
+0
+0
+0.9
+Saving image output.ppm: 600 x 600
+Press any key to continue . . .
