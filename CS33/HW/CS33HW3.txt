@@ -1,0 +1,68 @@
+Jason Tieu
+304047667
+
+Homework 3
+
+3.64---------------------------------------
+A.
+eax = address to store data members of s2
+ebx = s1.a (x)
+edx = s1.p (&y)
+
+B.
+For explanation, I'll say $esp started at address of 500
+After esp is 480 after esp = esp - 20
+
+Address      Item stored
+500	     old ebp
+496	     to be result.diff = s1.a - *s1.p; after word_sum called
+492	     to be result.sum = s1.a + *s1.p; after word_sum called
+488	     s1.p (&y)
+484	     s1.a (x)
+480	     value of %ecx (which is address 492, where eax (result of word_sum to be stored at))
+
+C.
+The general strategy for passing structures as agruments is to store the data members of that 
+structure starting at (the new ebp) + 12 (in this case) memory slots beforehand so they can be 
+called and stored into registers during the new function. They are in reverse order, since they
+are passed in as parameters via the caller's stack frame.
+
+D.
+The general strategy is to use eax. Since structures can have multiple data members, it is required
+to allocate memory within the stack to store eax such as line 4 of prod. Also 
+lines 13 and 14 of prod:
+13 movl -4(%ebp), %eax
+14 imull -8(%ebp), %eax
+
+show that the structure was given enough space, 4 bytes for an int and 4 bytes for a pointer in
+preparation of calling word_sum.
+------------------------------------------------------------------------------------------------
+3.67
+
+A.
+e1.p: 0 (1st 4 bytes)
+e1.y: 4 (2nd 4 bytes)
+addr: 0x0    0x4
+     e1.p | ep.y
+
+e2.x: 0 (1st 4 bytes)
+e2.next: 4 (2nd 4 bytes)
+addr: 0x0      0x4
+      e2.x | e2.next
+
+B.
+8 bytes
+
+C.
+void proc (union ele *up)
+{
+	up->e2.next->e1.y = *(up->e2.next->e1.p) - up->e1.x;
+}
+
+
+1 movl 8(%ebp), %edx    edx = *(ebp + 8)  //edx = up, *edx = x
+2 movl 4(%edx), %ecx	ecx = *(edx + 4)  //ecx = up->e2.next
+3 movl (%ecx), %eax	eax = *(ecx)	  //eax = up->e2.next->e1.p
+4 movl (%eax), %eax	eax = *(eax)      //eax = *(up->e2.next->e1.p)
+5 subl (%edx), %eax	eax = eax - *edx  //eax = *(up->e2.next->e1.p) - x
+6 movl %eax, 4(%ecx)	*(ecx + 4) = eax  //up->e2.next->e1.y = eax

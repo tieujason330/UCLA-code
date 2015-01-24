@@ -1,0 +1,719 @@
+Exploit string: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C8 DB FF FF E8 85 04 08 
+Stack view: Address     Value     Description 
+          0xFFFFDB5C 0x080485E8 new return address 
+          0xFFFFDB58 0xFFFFDBC8 maintain saved %ebp 
+          0xFFFFDB54 0x00000000 overwrite stack space 
+          0xFFFFDB50 0x00000000
+          0xFFFFDB4C 0x00000000 
+          0xFFFFDB48 0x00000000
+          
+int *old 4x4
+int *new 2x2
+dim_new = 2
+shrink_factor 2
+
+void shrink(int *old, int *new, int dim_new, int shrink_factor) {
+int i, j;
+int u, v;
+for (i=0; i<dim_new; i++) {
+  for (j=0; j<dim_new; j++) {
+    new[i*dim_new+j]=0;
+    for (u=0; u<shrink_factor; u++) {
+      for (v=0; v<shrink_factor; v++) {
+        new[i*dim_new+j]+= old[(i*shrink_factor+u)*dim_new*shrink_factor +(j*shrink_factor+v)];
+      }
+    }
+    new[i*dim_new+j]/=shrink_factor*shrink_factor;
+  }
+}
+}
+
+i = 0 
+  j = 0
+     new[i*dim_new + j] = new[0] = 0
+     u = 0
+       v = 0
+         //new[i * dim_new + j] = new[0] += old[(i*shrink + u) * dim_new * shrink + (j*shrink+v)]
+         new[0] += old[0]
+       v = 1
+         new[0] += old[1]
+     u = 1
+       v = 0
+         new[0] += old[4]
+       v = 1
+         new[0] += old[5]
+  j = 1
+     new[1] = 0
+     u = 0
+        v = 0
+          new[1] += old[2]
+        v = 1
+          new[1] += old[3]
+     u = 1
+        v = 0
+          new[1] += old[6]
+        v = 1
+          new[1] += old[7]
+
+
+
+----------------------------------------------------------------------------------------------
+void shrink_fast
+
+int *old = 4x4
+int *new = 2x2
+int dim_new = 2
+int shink_factor = 2
+
+BSIZE = 1/2 * N (N in this case is dim_new) so BSIZE = 1
+
+dimshirnk = dim_new * shrink_factor = 2 * 2 = 4
+sf2 = shrink_factor * shrink_factor = 2 * 2 = 4
+sf2dim = sf2 * dim_new = 4 * 2 = 8
+bdim = BSIZE * dim_new = 1 * 2 = 2
+
+A = wallaby
+B = platypus
+C = dingo
+D = koala
+E = wombat
+
+using 4x4 matrix ==> 2x2
+[0  1  2   3]
+[4  5  6   7]  ===>   [0 1]
+[8  9  10 11]         [2 3]
+[12 13 14 15]
+*****************************************************
+START
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+block [0 1]  ==> [0] of 2x2
+      [4 5] 
+****************************************************
+ii = 0, jj = 0, i = 0, j = 0, u = 0, v = 0
+****************************************************
+
+iidim = 0;
+ii = 0
+{
+  jj = 0
+  {
+    wallaby = 1
+    wombat = 0
+    platypus = 0
+    cassowary = 0
+    i = 0
+    {
+      kangaroo = 8
+      dingo = 1
+      echidna = 0
+      j = 0
+      {
+        koala = 0
+        u = 0 *
+        {
+          v = 0 *
+          {
+            koala += old[0] 
+          }
+          new[0] = koala/4
+          echidna = 2 
+        }
+        wombat = 2
+        platypus = 8
+      }   
+   
+    }
+    iidim = 2 
+  }
+}
+------------------------------------------------------
+****************************************************
+ii = 0, jj = 0, i = 0, j = 0, u = 0, v = 1
+****************************************************
+iidim = 0;
+ii = 0
+{
+  jj = 0
+  {
+    wallaby = 1
+    wombat = 0
+    platypus = 0
+    cassowary = 0
+    i = 0
+    {
+      kangaroo = 8
+      dingo = 1
+      echidna = 0
+      j = 0
+      {
+        koala = 0
+        u = 0 *
+        {
+          v = 1 **
+          {
+            koala += old[1] 
+          }
+          new[0] = koala/4
+          echidna = 2 
+        }
+        wombat = 2
+        platypus = 8
+      }   
+   
+    }
+    iidim = 2 
+  }
+}
+------------------------------------------------------
+****************************************************
+ii = 0, jj = 0, i = 0, j = 0, u = 4, v = 0
+****************************************************
+iidim = 0;
+ii = 0
+{
+  jj = 0
+  {
+    wallaby = 1
+    wombat = 0
+    platypus = 0
+    cassowary = 0
+    i = 0
+    {
+      kangaroo = 8
+      dingo = 1
+      echidna = 0
+      j = 0 *
+      {
+        koala = 0
+        u = 4 **
+        {
+          v = 0 *
+          {
+            koala += old[4] 
+          }
+          new[0] = koala/4
+          echidna = 2 
+        }
+        wombat = 2
+        platypus = 8
+      }   
+   
+    }
+    iidim = 2 
+  }
+}
+------------------------------------------------------
+****************************************************
+ii = 0, jj = 0, i = 0, j = 0, u = 4, v = 1
+****************************************************
+iidim = 0;
+ii = 0
+{
+  jj = 0
+  {
+    wallaby = 1
+    wombat = 0
+    platypus = 0
+    cassowary = 0
+    i = 0
+    {
+      kangaroo = 8
+      dingo = 1
+      echidna = 0
+      j = 0 *
+      {
+        koala = 0
+        u = 4 **
+        {
+          v = 1 **
+          {
+            koala += old[5] 
+          }
+          new[0] = koala/4
+          echidna = 2 
+        }
+        wombat = 2
+        platypus = 8
+      }   
+   
+    }
+    iidim = 2 
+  }
+}
+------------------------------------------------------
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+block [2 3]  ==> [1] of 2x2
+      [6 7] 
+****************************************************
+ii = 0, jj = 1, i = 0, j = 1, u = 0, v = 2
+****************************************************
+iidim = 0;
+ii = 0
+{
+  jj = 1
+  {
+    wallaby = 1
+    wombat = 0
+    platypus = 0
+    cassowary = 2
+    i = 0 
+    {
+      kangaroo = 8
+      dingo = 2
+      echidna = 2
+      j =  1
+      {
+        koala = 0
+        u = 0 *
+        {
+          v = 2 *
+          {
+            koala += old[2] 
+          }
+          new[1] = koala/4
+          echidna = 2 
+        }
+        wombat = 2
+        platypus = 8
+      }   
+   
+    }
+    iidim = 2 
+  }
+}
+------------------------------------------------------
+****************************************************
+ii = 0, jj = 1, i = 0, j = 1, u = 0, v = 3
+****************************************************
+iidim = 0;
+ii = 0
+{
+  jj = 1
+  {
+    wallaby = 1
+    wombat = 0
+    platypus = 0
+    cassowary = 2
+    i = 0 
+    {
+      kangaroo = 8
+      dingo = 2
+      echidna = 2
+      j =  1
+      {
+        koala = 0
+        u = 0 *
+        {
+          v = 3 **
+          {
+            koala += old[3] 
+          }
+          new[1] = koala/4
+          echidna = 2 
+        }
+        wombat = 2
+        platypus = 8
+      }   
+   
+    }
+    iidim = 2 
+  }
+}
+------------------------------------------------------
+****************************************************
+ii = 0, jj = 1, i = 0, j = 1, u = 4, v = 2
+****************************************************
+iidim = 0;
+ii = 0
+{
+  jj = 1
+  {
+    wallaby = 1
+    wombat = 0
+    platypus = 0
+    cassowary = 2
+    i = 0 
+    {
+      kangaroo = 8
+      dingo = 2
+      echidna = 2
+      j =  1
+      {
+        koala = 0
+        u = 4 **
+        {
+          v = 2 *
+          {
+            koala += old[6] 
+          }
+          new[1] = koala/4
+          echidna = 2 
+        }
+        wombat = 2
+        platypus = 8
+      }   
+   
+    }
+    iidim = 2 
+  }
+}
+------------------------------------------------------
+****************************************************
+ii = 0, jj = 1, i = 0, j = 1, u = 4, v = 3
+****************************************************
+iidim = 0;
+ii = 0
+{
+  jj = 1
+  {
+    wallaby = 1
+    wombat = 0
+    platypus = 0
+    cassowary = 2
+    i = 0 
+    {
+      kangaroo = 8
+      dingo = 2
+      echidna = 2
+      j =  1
+      {
+        koala = 0
+        u = 4 **
+        {
+          v = 3 **
+          {
+            koala += old[7] 
+          }
+          new[1] = koala/4
+          echidna = 2 
+        }
+        wombat = 2
+        platypus = 8
+      }   
+   
+    }
+    iidim = 2 
+  }
+}
+------------------------------------------------------
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+block [8   9]  ==> [2] of 2x2
+      [12 13] 
+****************************************************
+ii = 1, jj = 0, i = 1, j = 0, u = 8, v = 0
+****************************************************
+iidim = 2;
+ii = 1
+{
+  jj = 0
+  {
+    wallaby = 2
+    wombat = 2
+    platypus = 8
+    cassowary = 0
+    i = 1 
+    {
+      kangaroo = 16
+      dingo = 1
+      echidna = 0
+      j =  0
+      {
+        koala = 0
+        u = 8 *
+        {
+          v = 0 *
+          {
+            koala += old[8] 
+          } 
+        }
+        new[2] = koala/4
+        echidna = 2 
+        }
+        wombat = 4
+        platypus = 16
+     }   
+    }
+    iidim = 4 
+  }
+}
+------------------------------------------------------
+****************************************************
+ii = 1, jj = 0, i = 1, j = 0, u = 8, v = 1
+****************************************************
+iidim = 2;
+ii = 1
+{
+  jj = 0
+  {
+    wallaby = 2
+    wombat = 2
+    platypus = 8
+    cassowary = 0
+    i = 1 
+    {
+      kangaroo = 16
+      dingo = 1
+      echidna = 0
+      j =  0
+      {
+        koala = 0
+        u = 8 *
+        {
+          v = 1 **
+          {
+            koala += old[9] 
+          } 
+        }
+        new[2] = koala/4
+        echidna = 2 
+        }
+        wombat = 4
+        platypus = 16
+     }   
+    }
+    iidim = 4 
+  }
+}
+------------------------------------------------------
+****************************************************
+ii = 1, jj = 0, i = 1, j = 0, u = 12, v = 0
+****************************************************
+iidim = 2;
+ii = 1
+{
+  jj = 0
+  {
+    wallaby = 2
+    wombat = 2
+    platypus = 8
+    cassowary = 0
+    i = 1 
+    {
+      kangaroo = 16
+      dingo = 1
+      echidna = 0
+      j =  0
+      {
+        koala = 0
+        u = 12 **
+        {
+          v = 0 *
+          {
+            koala += old[12] 
+          } 
+        }
+        new[2] = koala/4
+        echidna = 2 
+        }
+        wombat = 4
+        platypus = 16
+     }   
+    }
+    iidim = 4 
+  }
+}
+------------------------------------------------------
+****************************************************
+ii = 1, jj = 0, i = 1, j = 0, u = 12, v = 1
+****************************************************
+iidim = 2;
+ii = 1
+{
+  jj = 0
+  {
+    wallaby = 2
+    wombat = 2
+    platypus = 8
+    cassowary = 0
+    i = 1 
+    {
+      kangaroo = 16
+      dingo = 1
+      echidna = 0
+      j =  0
+      {
+        koala = 0
+        u = 12 **
+        {
+          v = 1 **
+          {
+            koala += old[13] 
+          } 
+        }
+        new[2] = koala/4
+        echidna = 2 
+        }
+        wombat = 4
+        platypus = 16
+     }   
+    }
+    iidim = 4 
+  }
+}
+------------------------------------------------------
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+block [10 11]  ==> [3] of 2x2
+      [14 15] 
+
+****************************************************
+ii = 1, jj = 1, i = 1, j = 1, u = 8, v = 2
+****************************************************
+iidim = 2;
+ii = 1
+{
+  jj = 1
+  {
+    wallaby = 2
+    wombat = 2
+    platypus = 8
+    cassowary = 2
+    i = 1 
+    {
+      kangaroo = 16
+      dingo = 2
+      echidna = 2
+      j = 1 
+      {
+        koala = 0
+        u = 8 *
+        {
+          v = 2 *
+          {
+            koala += old[10] 
+          } 
+        }
+        new[3] = koala/4
+        echidna = 4 
+        }
+        wombat = 4
+        platypus = 16
+     }   
+    }
+    iidim = 4 
+  }
+}
+------------------------------------------------------
+****************************************************
+ii = 1, jj = 1, i = 1, j = 1, u = 8, v = 3
+****************************************************
+iidim = 2;
+ii = 1
+{
+  jj = 1
+  {
+    wallaby = 2
+    wombat = 2
+    platypus = 8
+    cassowary = 2
+    i = 1 
+    {
+      kangaroo = 16
+      dingo = 2
+      echidna = 2
+      j = 1 
+      {
+        koala = 0
+        u = 8 *
+        {
+          v = 3 **
+          {
+            koala += old[11] 
+          } 
+        }
+        new[3] = koala/4
+        echidna = 4 
+        }
+        wombat = 4
+        platypus = 16
+     }   
+    }
+    iidim = 4 
+  }
+}
+------------------------------------------------------
+****************************************************
+ii = 1, jj = 1, i = 1, j = 1, u = 12, v = 2
+****************************************************
+iidim = 2;
+ii = 1
+{
+  jj = 1
+  {
+    wallaby = 2
+    wombat = 2
+    platypus = 8
+    cassowary = 2
+    i = 1 
+    {
+      kangaroo = 16
+      dingo = 2
+      echidna = 2
+      j = 1 
+      {
+        koala = 0
+        u = 12 **
+        {
+          v = 2 *
+          {
+            koala += old[14] 
+          } 
+        }
+        new[3] = koala/4
+        echidna = 4 
+        }
+        wombat = 4
+        platypus = 16
+     }   
+    }
+    iidim = 4 
+  }
+}
+------------------------------------------------------
+****************************************************
+ii = 1, jj = 1, i = 1, j = 1, u = 12, v = 3
+****************************************************
+iidim = 2;
+ii = 1
+{
+  jj = 1
+  {
+    wallaby = 2
+    wombat = 2
+    platypus = 8
+    cassowary = 2
+    i = 1 
+    {
+      kangaroo = 16
+      dingo = 2
+      echidna = 2
+      j = 1 
+      {
+        koala = 0
+        u = 12 **
+        {
+          v = 3 **
+          {
+            koala += old[15] 
+          } 
+        }
+        new[3] = koala/4
+        echidna = 4 
+        }
+        wombat = 4
+        platypus = 16
+     }   
+    }
+    iidim = 4 
+  }
+}
+------------------------------------------------------
+v loop done 3++ = 4 !< 4
+u loop done 12 + 4 = 16 !< 16
+j loop done 1++ = 2 !< 2
+i loop done 1++ = 2 !< 2
+jj loop done 1+1 = 2 !< 2
+ii loop done 1+1 = 2 !< 2
+DONE
