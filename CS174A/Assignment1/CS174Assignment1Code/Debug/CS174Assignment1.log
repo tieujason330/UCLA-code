@@ -1,0 +1,55 @@
+﻿Build started 4/20/2014 1:37:07 PM.
+     1>Project "C:\Users\Jason\documents\visual studio 2013\Projects\CS174Assignment1\CS174Assignment1\CS174Assignment1.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files\Common Files\MSVC\freeglut\include" /ZI /nologo /W3 /WX- /sdl- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt anim.cpp
+         anim.cpp
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\angel\angel.h(63): warning C4305: 'initializing' : truncation from 'double' to 'const GLfloat'
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\angel\mat.h(734): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\angel\mat.h(735): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\angel\mat.h(736): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\angel\mat.h(757): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\angel\mat.h(759): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\angel\mat.h(762): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\angel\mat.h(779): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(256): warning C4305: 'argument' : truncation from 'double' to 'GLclampf'
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(344): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(345): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(378): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(379): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(387): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(389): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(444): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(446): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(466): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(468): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(524): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(534): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(544): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(554): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(564): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(574): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(584): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(594): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(616): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(618): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(649): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(661): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(664): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(678): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+     1>c:\users\jason\documents\visual studio 2013\projects\cs174assignment1\cs174assignment1\anim.cpp(681): warning C4244: 'argument' : conversion from 'double' to 'const GLfloat', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jason\documents\visual studio 2013\Projects\CS174Assignment1\Debug\CS174Assignment1.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\Common Files\MSVC\freeglut\lib" glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jason\documents\visual studio 2013\Projects\CS174Assignment1\Debug\CS174Assignment1.pdb" /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jason\documents\visual studio 2013\Projects\CS174Assignment1\Debug\CS174Assignment1.lib" /MACHINE:X86 Debug\anim.obj
+         Debug\Ball.obj
+         Debug\BallAux.obj
+         Debug\BallMath.obj
+         Debug\FrameSaver.obj
+         Debug\InitShader.obj
+         Debug\Shapes.obj
+         Debug\tga.obj
+         Debug\Timer.obj
+         CS174Assignment1.vcxproj -> C:\Users\Jason\documents\visual studio 2013\Projects\CS174Assignment1\Debug\CS174Assignment1.exe
+     1>Done Building Project "C:\Users\Jason\documents\visual studio 2013\Projects\CS174Assignment1\CS174Assignment1\CS174Assignment1.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.92
