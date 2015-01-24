@@ -1,0 +1,33 @@
+1 word_sum:
+2 pushl %ebp			saves old frame pointer
+3 movl %esp, %ebp		ebp = esp
+4 pushl %ebx			save old ebx
+5 movl 8(%ebp), %eax		eax = *(ebp + 8)
+6 movl 12(%ebp), %ebx		ebx = *(ebp + 12)
+7 movl 16(%ebp), %edx		edx = *(ebp + 16)
+8 movl (%edx), %edx		edx = *edx        //*p
+9 movl %ebx, %ecx		ecx = ebx         //a
+10 subl %edx, %ecx		ecx = ecx - edx   //ecx = s1.a - *s1.p   
+11 movl %ecx, 4(%eax)		*(eax + 4) = ecx  //result.diff = s1.a - *s1.p  
+12 addl %ebx, %edx		edx = edx + ebx   // edx = *s1.p + s1.a
+13 movl %edx, (%eax)		*eax = edx	  // result.sum = s1.a + *s1.p
+14 popl %ebx			ebx = old ebx
+15 popl %ebp			ebp = old ebp
+16 ret $4
+
+1 prod:
+2 pushl %ebp			saves old ebp
+3 movl %esp, %ebp		ebp = esp
+4 subl $20, %esp		esp = esp - 20		
+5 leal 12(%ebp), %edx		edx = ebp + 12		
+6 leal -8(%ebp), %ecx		ecx = ebp - 8
+7 movl 8(%ebp), %eax		eax = *(ebp + 8)		//eax = x
+8 movl %eax, 4(%esp)		*(esp + 4) = eax		
+9 movl %edx, 8(%esp)		*(esp + 8) = edx
+10 movl %ecx, (%esp)		*(esp) = ecx
+11 call word_sum		
+12 subl $4, %esp		esp = esp - 4
+13 movl -4(%ebp), %eax		eax = *(ebp - 4)
+14 imull -8(%ebp), %eax		eax = eax *  *(ebp - 8)
+15 leave
+16 ret

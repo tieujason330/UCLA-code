@@ -1,0 +1,97 @@
+Jason Tieu
+304047667
+CS 33
+
+Homework #1: 2.66, 2.71, 2.72, 2.81
+
+
+/* ----2.66----
+	Generate mask indicating leftmost 1 in x. Assume w=32
+	For example 0xFF00 -> 0x8000, and 0x6600 --> 0x4000
+	If x = 0, then return 0
+*/
+int leftmost_one(unsigned x)
+{
+	/* convert to pattern of form 0...011...1*/
+	x |= (x >> 1);
+	//printf("x hex: 0x%04X\n", x);
+	x |= (x >> 2);
+	//printf("x hex: 0x%04X\n", x);
+	x |= (x >> 4);
+	//printf("x hex: 0x%04X\n", x);
+	x |= (x >> 8);
+	//printf("x hex: 0x%04X\n", x);
+	x |= (x >> 16);
+	//printf("x hex: 0x%04X\n", x);
+
+	//now xor to get the leading 1
+	x ^= (x >> 1);
+	return x;
+}
+/*----------------------------------------*/
+/* ----2.71----
+	Declaration of data type where 4 bytes are packed into an unsigned
+*/
+typedef unsigned packed_t;
+
+/* Failed attempt
+
+int xbyte(packed_t word, int bytenum)
+{
+	return (word >> (bytenum << 3)) & 0xFF;
+}
+
+A. What is wrong with this code?
+	Ans: It zero extends when it should sign extend.
+*/
+
+/* Extract byte from word. Return as signed integer */
+int xbyte(packed_t word, int bytenum)
+{
+	//right shift sign extends due to arithmetic shift
+	return (word << ((3 - bytenum) << 3)) >> 24;
+}
+/*---------------------------------------*/
+/* ----2.72----
+	Copy integer into buffer if space is available
+	WARNING: The following code is buggy
+void copy_int(int val, void *buf, int maxbytes)
+{
+	if(maxbytes-sizeof(val) >= 0)
+		memcpy(buf, (void *) &val, sizeof(val));
+}
+A. Explain why the conditional test in the code always succeeds.
+	Ans: maxbytes is an int. sizeof() returns value of type size_t, which is
+	an unsigned. Thus the subtraction would be unsigned arithmetic,
+	always giving a value >= 0.
+*/
+void copy_int(int val, void *buf, int maxbytes)
+{
+	if (maxbytes - ((int)sizeof(val) >= 0)) //cast size_t to int
+		memcpy(buf, (void *)&val, sizeof(val));
+}
+/*----------------------------------*/
+/* ----2.81---- 
+A. (x < y) == (-x > -y)
+	No. An example case would be x = TMin (111...111) and y = 0 (000...000)
+	TMin == -TMin
+--------------------------------------
+B. ((x+y) << 4) + y - x == 17*y+15*x
+	Yes, always yields 1 because can be simplifed to
+	(x + y) << 4 == 16*y + 16+x
+	(x + y) * 2^4 = 16 * (y + x)
+	(x + y) * 16 == 16 * (y + x)
+--------------------------------------
+C. ~x + ~y + 1 == ~(x+y)
+	Yes, always yields 1 because
+	~x + ~y + 1 = (-x - 1) + (-y - 1) + 1 = -(x + y) - 1 = ~(x + y)
+--------------------------------------
+D. (ux-uy) == -(unsigned)(y-x)
+	Yes, always yields 1 because
+	of the relationship between unsigned arithmetic and 2s comp
+--------------------------------------
+E. ((x >> 2) << 2) <= x
+	Yes, always yields 1 because
+		>> causes it to round towards minus infinity
+--------------------------------------
+*/
