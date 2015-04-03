@@ -1,0 +1,17 @@
+/* Based off a template found on tutorial */
+div.suggestions {
+    box-sizing: border-box;
+    border: 1px solid black;
+    position: absolute;   
+}
+
+div.suggestions div {
+    cursor: default;
+    padding: 2px 2px;
+    background-color: #FFFFCC;
+}
+
+div.suggestions div.current {
+    background-color: #0099FF;
+    color: white;
+}

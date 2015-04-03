@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<script type="text/javascript" src="googlesuggest.js"></script>
+		<link rel="stylesheet" type="text/css" href="googlesuggest.css" />    
+		<script type="text/javascript">
+    	window.onload = function () {
+    		
+				var txtbox = new GoogleSuggestController(document.getElementById("qb"));        
+      }
+		</script>	
+		
+	</head>
+    <body>
+    	<h1>Keyword Search Page</h1>
+    	
+    	<form action="/eBay/search">
+    		Enter Query: <input type="text" name="q" id="qb" style="width:400px;" autocomplete="off" /> <br />
+    		
+    		<input type="hidden" name="numResultsToSkip" value="0" />
+				<input type="hidden" name="numResultsToReturn" value="11" />
+    		
+    		<br />
+    		<input type="submit" />
+    	</form>
+    	
+    </body>
+</html>
