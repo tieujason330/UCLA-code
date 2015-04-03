@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="C:/Users/152/Downloads/PimentelLab3/Lab3/Project3/tb2_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb2" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="11" />
+   <wvobject fp_name="/tb2/MinTens" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">MinTens[2:0]</obj_property>
+      <obj_property name="ObjectShortName">MinTens[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2/MinOnes" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">MinOnes[3:0]</obj_property>
+      <obj_property name="ObjectShortName">MinOnes[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2/SecTens" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">SecTens[2:0]</obj_property>
+      <obj_property name="ObjectShortName">SecTens[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2/SecOnes" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">SecOnes[3:0]</obj_property>
+      <obj_property name="ObjectShortName">SecOnes[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2/An" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">An[3:0]</obj_property>
+      <obj_property name="ObjectShortName">An[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2/C" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">C[6:0]</obj_property>
+      <obj_property name="ObjectShortName">C[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2/Led" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">Led[7:0]</obj_property>
+      <obj_property name="ObjectShortName">Led[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2/MasterClock" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">MasterClock</obj_property>
+      <obj_property name="ObjectShortName">MasterClock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2/Pause" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">Pause</obj_property>
+      <obj_property name="ObjectShortName">Pause</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2/Adjust" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">Adjust</obj_property>
+      <obj_property name="ObjectShortName">Adjust</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb2/Reset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">Reset</obj_property>
+      <obj_property name="ObjectShortName">Reset</obj_property>
+   </wvobject>
+</wave_config>

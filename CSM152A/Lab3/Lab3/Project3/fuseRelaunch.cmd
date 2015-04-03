@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "C:/Users/152/Downloads/PimentelLab3/Lab3/Project3/tb2_isim_beh.exe" -prj "C:/Users/152/Downloads/PimentelLab3/Lab3/Project3/tb2_beh.prj" "work.tb2" "work.glbl" 
